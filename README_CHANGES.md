@@ -3,6 +3,16 @@
 ## 🎯 Objectif
 Ajouter le champ `check_terrain` pour distinguer le contrôle terrain du contrôle dossier dans l'export JavaScript.
 
+## ⚠️ ERREUR COURANTE
+
+**Problème avec `Attribute VB_Name = "Export_JS"` ?**
+
+👉 Consultez le guide : **[ERREUR_ATTRIBUTE_VB_NAME.md](ERREUR_ATTRIBUTE_VB_NAME.md)**
+
+Cette ligne NE DOIT PAS être copiée dans l'éditeur VBA ! Elle cause des erreurs de compilation.
+
+---
+
 ## ✅ Modifications Réalisées
 
 ### 1. Fichier Export_JS.bas (lignes 125-128)

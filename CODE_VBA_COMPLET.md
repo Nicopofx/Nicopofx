@@ -5,11 +5,13 @@
 1. **Ouvrez votre fichier Excel**
 2. **Appuyez sur `Alt + F11`** (ouvre l'éditeur VBA)
 3. **Dans le menu** : Insertion > Module
-4. **Copiez-collez TOUT le code ci-dessous** dans le nouveau module
+4. **Copiez-collez le code ci-dessous** dans le nouveau module (⚠️ Sans la ligne `Attribute VB_Name` !)
 5. **Fermez l'éditeur VBA** (`Alt + Q`)
 6. **Exécutez la macro** : `Alt + F8`, sélectionnez "Export_JS", puis cliquez sur "Exécuter"
 
-⚠️ **IMPORTANT** : Si vous avez déjà un module "Export_JS", supprimez-le d'abord !
+⚠️ **IMPORTANT** : 
+- Si vous avez déjà un module "Export_JS", supprimez-le d'abord !
+- Ne copiez JAMAIS la ligne `Attribute VB_Name = "Export_JS"` - elle est gérée automatiquement par VBA
 
 ---
 
@@ -35,8 +37,11 @@ objLines.Add "    , check: " & BoolJS(ws.Cells(i, "S").Value)          ' Existan
 
 ## 📄 CODE VBA COMPLET
 
+⚠️ **ATTENTION** : Ne copiez PAS la ligne `Attribute VB_Name = "Export_JS"` si vous la voyez - cette ligne est gérée automatiquement par VBA et cause une erreur si vous la collez manuellement !
+
+**Commencez à copier à partir de la ligne ci-dessous :**
+
 ```vba
-Attribute VB_Name = "Export_JS"
 ' VBA : Export JS enrichi (remplace entièrement l'ancienne macro)
 ' Génère data_1.js à partir de la feuille "Control dossier"
 ' Champs ajoutés : errors_count, error_codes, tags, history, has_comment
