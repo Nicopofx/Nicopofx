@@ -122,8 +122,10 @@ Public Sub Export_JS()
             objLines.Add "    date: """ & FormatDateForJS(rawDate) & """"
             objLines.Add "    , cie: """ & EscapeJS(ws.Cells(i, "G").Text) & """"
             objLines.Add "    , vol: """ & EscapeJS(ws.Cells(i, "H").Text) & """"
-            ' check : renvoyer true/false (sans guillemets) - CORRECTION: colonne R au lieu de S
-            objLines.Add "    , check: " & BoolJS(ws.Cells(i, "R").Value)
+            ' check_terrain : colonne R (check terrain)
+            objLines.Add "    , check_terrain: " & BoolJS(ws.Cells(i, "R").Value)
+            ' check : colonne S (check dossier)
+            objLines.Add "    , check: " & BoolJS(ws.Cells(i, "S").Value)
             objLines.Add "    , agent: """ & EscapeJS(ws.Cells(i, "T").Text) & """"
             objLines.Add "    , tso: """ & EscapeJS(ws.Cells(i, "U").Text) & """"
             objLines.Add "    , debrief: " & BoolJS(ws.Cells(i, "V").Value)

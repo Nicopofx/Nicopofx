@@ -1,40 +1,33 @@
-# Bug Fix Documentation - Export JS Enrichi
+# Documentation - Export JS Enrichi
 
-## Problème identifié
+## Améliorations apportées
 
-Dans la macro VBA `Export_JS`, il y avait une erreur dans la lecture des colonnes pour l'exportation des données vers le fichier JavaScript `data_1.js`.
+Dans la macro VBA `Export_JS`, ajout d'un nouveau champ pour exporter les données de contrôle terrain en plus du contrôle dossier.
 
-### Bug principal : Colonne "check" incorrecte
+### Nouvelle fonctionnalité : Ajout du champ "check_terrain"
 
-**Symptôme :** Les valeurs de la colonne "check" étaient mal exportées dans le fichier JS.
+**Besoin :** Exporter séparément les informations de contrôle terrain et contrôle dossier.
 
-**Cause :** Le code lisait la valeur de la colonne **S** au lieu de la colonne **R**.
+**Solution :** Ajout d'un nouveau champ `check_terrain` dans l'export JavaScript.
 
 ```vba
-' ❌ AVANT (INCORRECT)
+' ✅ NOUVEAU : check_terrain (colonne R)
+objLines.Add "    , check_terrain: " & BoolJS(ws.Cells(i, "R").Value)
+
+' ✅ EXISTANT : check (colonne S - check dossier)
 objLines.Add "    , check: " & BoolJS(ws.Cells(i, "S").Value)
-```
 
-```vba
-' ✅ APRÈS (CORRIGÉ)
-objLines.Add "    , check: " & BoolJS(ws.Cells(i, "R").Value)
-```
-
-### Vérification de la colonne "debrief"
-
-La colonne "debrief" (colonne V) était déjà correcte et n'a pas nécessité de modification.
-
-```vba
-' ✅ CORRECT (pas de changement nécessaire)
+' ✅ EXISTANT : debrief (colonne V)
 objLines.Add "    , debrief: " & BoolJS(ws.Cells(i, "V").Value)
 ```
 
-## Résumé des modifications
+## Résumé des champs de contrôle
 
-| Champ | Colonne attendue | Colonne avant fix | Colonne après fix | Statut |
-|-------|------------------|-------------------|-------------------|--------|
-| check | R | S | R | ✅ Corrigé |
-| debrief | V | V | V | ✅ Déjà correct |
+| Champ | Colonne | Description | Statut |
+|-------|---------|-------------|--------|
+| check_terrain | R | Check terrain | ✅ Nouveau champ ajouté |
+| check | S | Check dossier | ✅ Existant (maintenu) |
+| debrief | V | Débriefing avec l'agent | ✅ Existant (maintenu) |
 
 ## Mapping des colonnes
 
